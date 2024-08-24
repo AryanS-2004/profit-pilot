@@ -2,6 +2,7 @@ import { Link, useRouter } from 'expo-router';
 import { StyleSheet, View, Text, StatusBar, Image, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import icons from '../assets/assets'
 import { homeStyles } from './styles/home.style';
+import ProfileCard from '@/components/profile-card/profile-card';
 
 export default function HomeScreen() {
 
@@ -9,9 +10,9 @@ export default function HomeScreen() {
   return (
     <>
       <ScrollView style={homeStyles.container}>
-        <Text>
-          Home Screen
-        </Text>
+        <View>
+          <ProfileCard />
+        </View>
         <Link href="/Statistic">View Stats</Link>
       </ScrollView>
 
