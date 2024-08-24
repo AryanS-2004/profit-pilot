@@ -27,7 +27,9 @@ export const statsStyles = StyleSheet.create({
     backgroundColor: ThemeColors.sWhite,
     padding: height * 0.02,
     borderRadius: height * 0.02,
-    borderBottomEndRadius: 0,
+    // borderBottomEndRadius: 0,
+    // borderBottomStartRadius: 0,
+
   },
   chartSectionHeaderContainer: {
     display: 'flex',
@@ -83,7 +85,7 @@ export const statsStyles = StyleSheet.create({
     borderRadius: height,
     padding: height * 0.015,
     backgroundColor: ThemeColors.sWhite,
-    marginVertical: height * 0.04,
+    marginVertical: height * 0.015,
   },
   monthText: {
     padding: height * 0.015,
