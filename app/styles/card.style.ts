@@ -1,29 +1,56 @@
+import { ThemeColors } from "@/constants/Colors";
+import { ThemeFont } from "@/constants/Font";
+import { ThemeText } from "@/constants/Text";
 import { Dimensions, StatusBar, StyleSheet } from "react-native";
 
+const { width, height } = Dimensions.get("window")
+
 export const cardStyles = StyleSheet.create({
+  buttonContainer: {
+    width: "100%",
+    marginHorizontal: 'auto',
+    textAlign: 'center',
+    paddingVertical: 16,
+    borderRadius: 16,
+    backgroundColor: ThemeColors.pBlue,
+    elevation: 8,
+    shadowColor: ThemeColors.pBlue,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+  },
+  buttonText: {
+    color: ThemeColors.pBlack,
+    alignSelf: 'center',
+    fontSize: ThemeText.n,
+    fontFamily: ThemeFont.sb,
+    fontWeight: "500",
+  },
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight,
     minHeight: Dimensions.get('window').height,
     paddingTop: 40,
-    marginBottom: 36,
+    paddingBottom: 36,
     paddingHorizontal: 24,
+    backgroundColor: '#fbfbfc'
   },
   floatingWindow: {
     position: 'absolute',
-    bottom: 40, // Position the bar slightly above the bottom edge
+    bottom: height * 0.05,
     left: 0,
     right: 0,
-    height: 60,
-    backgroundColor: '#ffffff', // Bar background color
+    height: height * 0.075,
+    alignSelf: 'center',
+    backgroundColor: '#ffffff',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    borderRadius: 16, // Rounded corners
-    marginHorizontal: 110, // Add some margin to the sides
-    elevation: 5, // Add shadow for Android
-    shadowColor: '#000', // Shadow for iOS
+    paddingHorizontal: 4,
+    borderRadius: height * 0.02,
+    marginHorizontal: width * 0.25,
+    elevation: height * 0.01,
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 5,
@@ -31,5 +58,10 @@ export const cardStyles = StyleSheet.create({
   iconButton: {
     padding: 0,
     width: 24,
+  },
+  listContainer: {
+    width: '100%',
+    marginVertical: 8,
+    gap: 20,
   },
 })

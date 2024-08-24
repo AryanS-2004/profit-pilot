@@ -13,35 +13,41 @@ export default function HomeScreen() {
   return (
     <>
       <View style={homeStyles.container}>
-        <View>
-          <ProfileCard />
-        </View>
-        <View style={homeStyles.accountContainer}>
-          <Text style={homeStyles.accountHeading}>Account</Text>
-          <FlatList
-            data={userData.cards}
-            renderItem={({ item }) => <Card item={item} />}
-            keyExtractor={(item) => item.id}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={homeStyles.listContainer}
-          />
-        </View>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+        >
+          <View>
+            <ProfileCard />
+          </View>
+          <View style={homeStyles.accountContainer}>
+            <Text style={homeStyles.accountHeading}>Account</Text>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+              <FlatList
+                data={userData.cards}
+                renderItem={({ item }) => <Card item={item} />}
+                keyExtractor={(item) => item.id}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={homeStyles.listContainer}
+              />
+            </ScrollView>
+          </View>
 
-        <View style={homeStyles.reqSendContainer}>
-          <View style={homeStyles.requestContainer}>
-            <Image source={assets.Recieve} style={homeStyles.requestIcon} />
-            <Text style={homeStyles.requestText}>Request</Text>
+          <View style={homeStyles.reqSendContainer}>
+            <View style={homeStyles.requestContainer}>
+              <Image source={assets.Recieve} style={homeStyles.requestIcon} />
+              <Text style={homeStyles.requestText}>Request</Text>
+            </View>
+            <View style={homeStyles.requestContainer}>
+              <Image source={assets.Send} style={homeStyles.requestIcon} />
+              <Text style={homeStyles.requestText}>Transfer</Text>
+            </View>
+            <View style={homeStyles.plusContainer}>
+              <Image source={assets.Plus} style={homeStyles.plusIcon} />
+            </View>
           </View>
-          <View style={homeStyles.requestContainer}>
-            <Image source={assets.Send} style={homeStyles.requestIcon} />
-            <Text style={homeStyles.requestText}>Transfer</Text>
-          </View>
-          <View style={homeStyles.plusContainer}>
-            <Image source={assets.Plus} style={homeStyles.plusIcon} />
-          </View>
-        </View>
-        {/* <Link href="/Statistic">View Stats</Link> */}
+        </ScrollView>
       </View>
 
 

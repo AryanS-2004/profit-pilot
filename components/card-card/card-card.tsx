@@ -11,13 +11,24 @@ import { useState } from 'react';
 export default function Card({ item }: { item: any }) {
 
   const [showBalance, setShowBalance] = useState<boolean>(true);
-
   const router = useRouter();
   return (
     <>
-      <View style={[styles.container, {
-        backgroundColor: item.id % 2 ? ThemeColors.pBlue : ThemeColors.pGreen
-      }]}>
+      <Pressable
+        style={[styles.container, {
+          backgroundColor: item.id % 2 ? ThemeColors.pBlue : ThemeColors.pGreen
+        }]}
+
+        onPress={
+          () => {
+            router.push({
+              pathname: '/Statistic',
+              params: {
+                item: JSON.stringify(item)
+              }
+            })
+          }}
+      >
         <View style={styles.topContainer}>
           <View style={styles.usContainer}>
             <Image source={assets.USA} style={styles.usaIcon} />
@@ -61,16 +72,8 @@ export default function Card({ item }: { item: any }) {
             </View>
           </View>
         </View>
-      </View >
+      </Pressable >
     </>
   );
 }
-
-
-
-
-// HOME  -> CARD CLICK ->  STATISTICS PAGE
-
-
-
 

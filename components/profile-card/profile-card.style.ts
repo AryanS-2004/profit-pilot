@@ -3,12 +3,13 @@ import { ThemeFont } from "@/constants/Font";
 import { ThemeText } from "@/constants/Text";
 import { Dimensions, StatusBar, StyleSheet } from "react-native";
 
+const { height, width } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
-    height: 60,
+    height: height * 0.075,
     width: "100%",
 
   },
@@ -20,10 +21,10 @@ export const styles = StyleSheet.create({
   infoContainer: {
     flex: 1,
     flexDirection: 'row',
-    gap: 12
+    gap: height * 0.015
   },
   nameContainer: {
-    paddingVertical: 8,
+    paddingVertical: height * 0.01,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
@@ -41,8 +42,8 @@ export const styles = StyleSheet.create({
     fontFamily: ThemeFont.sb,
   },
   notificationIcon: {
-    width: 24,
-    height: 24,
+    width: height * 0.035,
+    height: height * 0.035,
   },
   notificationIconContainer: {
     display: 'flex',
@@ -50,7 +51,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   profileIcon: {
-    width: 52,
-    height: 52,
+    width: height * 0.065,
+    height: height * 0.065,
   },
 })

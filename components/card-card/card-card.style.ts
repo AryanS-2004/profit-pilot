@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     borderRadius: 30,
   },
   eyeContainer: {
-    borderColor: ThemeColors.lGray,
+    borderColor: ThemeColors.bgWhite,
     borderWidth: 0.5,
     borderRadius: 100,
     padding: 6,
@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
     padding: 4,
     paddingRight: 12,
     borderRadius: 100,
-    backgroundColor: ThemeColors.lGray,
+    backgroundColor: ThemeColors.bgWhite,
   },
   usaIcon: {
     width: 32,

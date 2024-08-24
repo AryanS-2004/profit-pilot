@@ -1,37 +1,79 @@
-import { Link, useRouter } from 'expo-router';
-import { StyleSheet, View, Text, Image, StatusBar, TouchableOpacity, Dimensions } from 'react-native';
-import icons from '../assets/assets'
+import React, { useState, useEffect } from 'react';
+import { Text, View, StyleSheet, Button, Dimensions, TouchableOpacity, Image, StatusBar, ScrollView, ActivityIndicator, Alert, Vibration, Pressable } from 'react-native';
+import { useRouter } from 'expo-router';
+import { BarcodeScanningResult, CameraView, useCameraPermissions } from 'expo-camera';
+import icons from '../assets/assets';
 import { qrStyles } from './styles/qr.style';
 
 export default function QRScreen() {
-
   const router = useRouter();
-  return (
-    <>
-      <View style={qrStyles.container}>
-        <Text>
-          QR Screen
-        </Text>
+
+  const [permission, requestPermission] = useCameraPermissions();
+  const [scanningEnabled, setScanningEnabled] = useState(true);
+
+  if (!permission) {
+    return (
+      <View style={qrStyles.loadingContainer}>
+        <View style={qrStyles.container}>
+          <ActivityIndicator size="large" />
+        </View>
       </View>
+    );
+  }
+
+  if (!permission.granted) {
+    return (
+      <View style={qrStyles.container}>
+        <Pressable onPress={requestPermission}>
+          <Text style={{ color: 'blue' }}>Allow Camera Access</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  async function onBarcodeScanned({ data }: BarcodeScanningResult) {
+    if (!scanningEnabled) return;
+
+    setScanningEnabled(false);
+
+    // Show the alert
+    Alert.alert('Scanned Data', data, [
+      {
+        text: 'OK',
+        onPress: () => setScanningEnabled(true),
+      },
+    ]);
+  }
+
+  return (
+    <View style={qrStyles.container}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      >
+        <CameraView
+          style={qrStyles.camera}
+          facing="back"
+          onBarcodeScanned={scanningEnabled ? onBarcodeScanned : undefined}
+          barcodeScannerSettings={{
+            barcodeTypes: ["qr"],
+          }}
+        />
+      </ScrollView>
+
+      {/* Floating Window */}
       <View style={qrStyles.floatingWindow}>
-        <TouchableOpacity style={qrStyles.iconButton}
-          onPress={() => router.navigate('/home')}
-        >
+        <TouchableOpacity style={qrStyles.iconButton} onPress={() => router.navigate('/home')}>
           <Image source={icons.Home} style={qrStyles.iconButton} />
         </TouchableOpacity>
-        <TouchableOpacity style={qrStyles.iconButton}
-          onPress={() => router.navigate('/card')}
-        >
+        <TouchableOpacity style={qrStyles.iconButton} onPress={() => router.navigate('/card')}>
           <Image source={icons.CardGray} style={qrStyles.iconButton} />
-
         </TouchableOpacity>
-        <TouchableOpacity style={qrStyles.iconButton}
-          onPress={() => router.navigate('/qr')}
-        >
+        <TouchableOpacity style={qrStyles.iconButton} onPress={() => router.navigate('/qr')}>
           <Image source={icons.ScannerGray} style={qrStyles.iconButton} />
         </TouchableOpacity>
       </View>
-    </>
+    </View>
   );
 }
 

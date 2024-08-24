@@ -3,83 +3,84 @@ import { ThemeFont } from "@/constants/Font";
 import { ThemeText } from "@/constants/Text";
 import { Dimensions, StatusBar, StyleSheet } from "react-native";
 
+const { height, width } = Dimensions.get("window");
+
 export const homeStyles = StyleSheet.create({
   accountContainer: {
   },
   accountHeading: {
-    fontFamily: ThemeFont.med,
+    fontFamily: ThemeFont.sb,
     fontSize: ThemeText.l,
-    marginVertical: 4,
-    marginTop: 8,
+    marginVertical: height * 0.005,
+    marginTop: height * 0.01,
   },
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight,
     minHeight: Dimensions.get('window').height,
-    paddingTop: 20,
-    marginBottom: 36,
-    paddingHorizontal: 24,
+    paddingTop: height * 0.025,
+    paddingHorizontal: width * 0.05,
+    backgroundColor: '#fbfbfc'
   },
   floatingWindow: {
     position: 'absolute',
-    bottom: 40, // Position the bar slightly above the bottom edge
+    bottom: height * 0.05,
     left: 0,
     right: 0,
-    height: 60,
+    height: height * 0.075,
     alignSelf: 'center',
-    backgroundColor: '#ffffff', // Bar background color
+    backgroundColor: '#ffffff',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
     paddingHorizontal: 4,
-    borderRadius: 16, // Rounded corners
-    marginHorizontal: 110, // Add some margin to the sides
-    elevation: 5, // Add shadow for Android
-    shadowColor: '#000', // Shadow for iOS
+    borderRadius: height * 0.02,
+    marginHorizontal: width * 0.25,
+    elevation: height * 0.01,
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 5,
   },
   iconButton: {
-    padding: 0,
-    width: 24,
+    width: height * 0.03,
+    height: height * 0.03,
   },
   listContainer: {
     width: '100%',
     marginVertical: 8,
-    gap: 20,
+    gap: height * 0.025,
   },
   plusContainer: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    padding: 16,
-    borderRadius: 100,
+    padding: height * 0.02,
+    borderRadius: height,
     backgroundColor: ThemeColors.pBlack,
   },
   plusIcon: {
-    width: 32,
-    height: 32,
+    width: height * 0.04,
+    height: height * 0.04,
   },
   reqSendContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 12,
+    marginTop: height * 0.015,
   },
   requestContainer: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-    borderRadius: 100,
-    backgroundColor: ThemeColors.sWhite,
+    gap: height * 0.01,
+    paddingHorizontal: height * 0.015,
+    borderRadius: height,
+    backgroundColor: ThemeColors.White,
   },
   requestIcon: {
-    height: 32,
-    width: 32,
+    height: height * 0.025,
+    width: height * 0.025,
   },
   requestText: {
     fontFamily: ThemeFont.sb,

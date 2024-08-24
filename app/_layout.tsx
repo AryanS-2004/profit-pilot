@@ -55,7 +55,7 @@ export default function RootLayout() {
             fontSize: 16,
           },
           headerStyle: {
-            backgroundColor: '#f0f0f0', // Set the same background color as the screen
+            backgroundColor: '#ebebeb', // Set the same background color as the screen
           },
           headerShadowVisible: false,
         }}

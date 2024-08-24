@@ -1,36 +1,33 @@
+import { Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+
 export const ThemeText = {
   // small
-  xs: 8,
-
-  // small
-  s: 12,
+  xs: height * 0.01,
+  s: height * 0.015,
 
   // medium small
-  ms: 14,
+  ms: height * 0.0175,
 
   // normal
-  n: 16,
+  n: height * 0.02,
 
   // medium
-  m: 20,
+  m: height * 0.025,
 
+  // large
+  l: height * 0.03,
 
-  //large
-  l: 24,
+  // xlarge
+  xl: height * 0.035,
 
+  // xxlarge
+  xxl: height * 0.04,
 
-  //xlarge
-  xl: 32,
+  // xxxlarge
+  xxxl: height * 0.05,
 
-
-  //xxlarge
-  xxl: 40,
-
-
-  //xxxlarge
-  xxxl: 52,
-
-  //xxxxlarge
-  xxxxl: 64,
-
-}
+  // xxxlarge
+  xxxxl: height * 0.065,
+};
