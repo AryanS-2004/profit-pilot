@@ -1,33 +1,36 @@
 export const ThemeText = {
   // small
-  xsSize: 8,
+  xs: 8,
 
   // small
-  sSize: 12,
+  s: 12,
+
+  // medium small
+  ms: 14,
 
   // normal
-  nSize: 16,
+  n: 16,
 
   // medium
-  mSize: 20,
+  m: 20,
 
 
   //large
-  lSize: 24,
+  l: 24,
 
 
   //xlarge
-  xlSize: 32,
+  xl: 32,
 
 
   //xxlarge
-  xxlSize: 40,
+  xxl: 40,
 
 
   //xxxlarge
-  xxxlSize: 52,
+  xxxl: 52,
 
   //xxxxlarge
-  xxxxlSize: 64,
+  xxxxl: 64,
 
 }

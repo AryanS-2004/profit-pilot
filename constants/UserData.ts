@@ -1,8 +1,11 @@
+import assets from "@/assets/assets";
+
 export const userData = {
   name: "Sarah Muller",
+  icon: assets.Profile,
   cards: [
     {
-      id: 1,
+      id: '1',
       type: 'VISA',
       expiry: '09/24',
       number: '1253543235213090',
@@ -42,7 +45,7 @@ export const userData = {
       ]
     },
     {
-      id: 2,
+      id: '2',
       type: 'VISA',
       expiry: '09/24',
       number: '1253543235213090',

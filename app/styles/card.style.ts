@@ -5,6 +5,9 @@ export const cardStyles = StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight,
     minHeight: Dimensions.get('window').height,
+    paddingTop: 40,
+    marginBottom: 36,
+    paddingHorizontal: 24,
   },
   floatingWindow: {
     position: 'absolute',

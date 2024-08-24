@@ -1,20 +1,48 @@
 import { Link, useRouter } from 'expo-router';
-import { StyleSheet, View, Text, StatusBar, Image, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, StatusBar, Image, TouchableOpacity, ScrollView, Dimensions, FlatList } from 'react-native';
 import icons from '../assets/assets'
 import { homeStyles } from './styles/home.style';
 import ProfileCard from '@/components/profile-card/profile-card';
+import { userData } from '@/constants/UserData';
+import Card from '@/components/card-card/card-card';
+import assets from '../assets/assets';
 
 export default function HomeScreen() {
 
   const router = useRouter();
   return (
     <>
-      <ScrollView style={homeStyles.container}>
+      <View style={homeStyles.container}>
         <View>
           <ProfileCard />
         </View>
-        <Link href="/Statistic">View Stats</Link>
-      </ScrollView>
+        <View style={homeStyles.accountContainer}>
+          <Text style={homeStyles.accountHeading}>Account</Text>
+          <FlatList
+            data={userData.cards}
+            renderItem={({ item }) => <Card item={item} />}
+            keyExtractor={(item) => item.id}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={homeStyles.listContainer}
+          />
+        </View>
+
+        <View style={homeStyles.reqSendContainer}>
+          <View style={homeStyles.requestContainer}>
+            <Image source={assets.Recieve} style={homeStyles.requestIcon} />
+            <Text style={homeStyles.requestText}>Request</Text>
+          </View>
+          <View style={homeStyles.requestContainer}>
+            <Image source={assets.Send} style={homeStyles.requestIcon} />
+            <Text style={homeStyles.requestText}>Transfer</Text>
+          </View>
+          <View style={homeStyles.plusContainer}>
+            <Image source={assets.Plus} style={homeStyles.plusIcon} />
+          </View>
+        </View>
+        {/* <Link href="/Statistic">View Stats</Link> */}
+      </View>
 
 
       <View style={homeStyles.floatingWindow}>

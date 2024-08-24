@@ -1,4 +1,5 @@
 import { ThemeColors } from "@/constants/Colors";
+import { ThemeFont } from "@/constants/Font";
 import { ThemeText } from "@/constants/Text";
 import { Dimensions, StatusBar, StyleSheet } from "react-native";
 
@@ -7,9 +8,9 @@ export const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
-    height: 50,
-    width: "90%",
-    marginHorizontal: 'auto',
+    height: 60,
+    width: "100%",
+
   },
   imgContainer: {
     display: 'flex',
@@ -22,19 +23,22 @@ export const styles = StyleSheet.create({
     gap: 12
   },
   nameContainer: {
+    paddingVertical: 8,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
   },
   nameContainerText1: {
     color: ThemeColors.pGray,
-    fontSize: ThemeText.sSize,
-    fontWeight: "500"
+    fontSize: ThemeText.s,
+    fontWeight: "500",
+    fontFamily: ThemeFont.med,
   },
   nameContainerText2: {
     color: ThemeColors.pBlack,
-    fontSize: ThemeText.nSize,
-    fontWeight: "500"
+    fontSize: ThemeText.n,
+    fontWeight: "500",
+    fontFamily: ThemeFont.sb,
   },
   notificationIcon: {
     width: 24,
@@ -46,7 +50,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   profileIcon: {
-    width: 48,
-    height: 48,
+    width: 52,
+    height: 52,
   },
 })

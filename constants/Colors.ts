@@ -2,6 +2,11 @@
 
 export const ThemeColors = {
   pGray: '#595959',
-  sGray: '#B4B4B4',
+  sGray: '#b4b4b4',
+  lGray: '#f2f2f2',
+  pWhite: '#e7e7e7',
+  sWhite: '#f9f9f9',
   pBlack: '#171717',
+  pBlue: '#87dcfb',
+  pGreen: '#c8e9ca',
 };

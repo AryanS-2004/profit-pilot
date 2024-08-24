@@ -14,7 +14,7 @@ export default function ProfileCard() {
       <View style={styles.container}>
         <View style={styles.infoContainer}>
           <View style={styles.imgContainer}>
-            <Image source={icons.Profile} style={styles.profileIcon} />
+            <Image source={userData.icon} style={styles.profileIcon} />
           </View>
           <View style={styles.nameContainer}>
             <Text style={styles.nameContainerText1}>Welcome Back,</Text>

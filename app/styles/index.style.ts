@@ -13,7 +13,7 @@ export const indexStyles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   buttonContainer: {
-    width: "80%",
+    width: "100%",
     marginHorizontal: 'auto',
     textAlign: 'center',
     paddingVertical: 16,
@@ -26,22 +26,22 @@ export const indexStyles = StyleSheet.create({
     shadowRadius: 5,
   },
   buttonText: {
-    color: ThemeColors.sGray,
+    color: ThemeColors.pWhite,
     alignSelf: 'center',
-    fontSize: ThemeText.nSize,
+    fontSize: ThemeText.n,
     fontFamily: ThemeFont.med,
     fontWeight: "500",
   },
   text1: {
     color: ThemeColors.pBlack,
-    fontSize: ThemeText.xxxxlSize,
-    lineHeight: ThemeText.xxxxlSize + 4,
+    fontSize: ThemeText.xxxxl,
+    lineHeight: ThemeText.xxxxl + 4,
     fontFamily: ThemeFont.reg,
   },
   text2: {
     color: ThemeColors.pBlack,
-    fontSize: ThemeText.xxxxlSize,
-    lineHeight: ThemeText.xxxxlSize,
+    fontSize: ThemeText.xxxxl,
+    lineHeight: ThemeText.xxxxl,
     fontFamily: ThemeFont.sb,
   },
   text3: {
@@ -56,7 +56,7 @@ export const indexStyles = StyleSheet.create({
   },
   titleText: {
     color: ThemeColors.pBlack,
-    fontSize: ThemeText.lSize,
+    fontSize: ThemeText.l,
     fontFamily: ThemeFont.sb,
   }
 })
