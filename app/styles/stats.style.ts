@@ -16,17 +16,17 @@ export const statsStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    gap: 4,
+    gap: height * 0.005,
     backgroundColor: ThemeColors.bgGray,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 100,
+    paddingVertical: height * 0.01,
+    paddingHorizontal: height * 0.015,
+    borderRadius: height,
   },
 
   chartSectionContainer: {
     backgroundColor: ThemeColors.sWhite,
-    padding: 16,
-    borderRadius: 16,
+    padding: height * 0.02,
+    borderRadius: height * 0.02,
     borderBottomEndRadius: 0,
   },
   chartSectionHeaderContainer: {
@@ -40,15 +40,15 @@ export const statsStyles = StyleSheet.create({
     fontSize: ThemeText.n,
   },
   chevDownIcon: {
-    width: 16,
-    height: 16,
+    width: height * 0.02,
+    height: height * 0.02,
   },
   container: {
     flex: 1,
-    minHeight: Dimensions.get('window').height,
-    paddingTop: 20,
-    paddingBottom: 36,
-    paddingHorizontal: 24,
+    minHeight: Dimensions.get('window').height - height * 0.1,
+    paddingTop: height * 0.025,
+    paddingBottom: height * 0.04,
+    paddingHorizontal: height * 0.03,
     backgroundColor: ThemeColors.bgGray,
   },
   floatingWindow: {
@@ -73,20 +73,21 @@ export const statsStyles = StyleSheet.create({
   },
   iconButton: {
     padding: 0,
-    width: 24,
+    width: height * 0.03,
+    height: height * 0.03,
   },
   monthContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderRadius: 100,
-    padding: 12,
+    borderRadius: height,
+    padding: height * 0.015,
     backgroundColor: ThemeColors.sWhite,
-    marginVertical: 32,
+    marginVertical: height * 0.04,
   },
   monthText: {
-    padding: 12,
-    borderRadius: 100,
+    padding: height * 0.015,
+    borderRadius: height,
     fontFamily: ThemeFont.med
   }
 })

@@ -18,6 +18,8 @@ import ScannerGray from './images/scanner-gray.png';
 import Send from './images/send.png';
 import USA from './images/usa.png';
 import Visa from './images/visa.png';
+import Wifi from './images/wifi.png';
+import WifiWhite from './images/wifi-white.png';
 
 
 export default icons = {
@@ -41,4 +43,6 @@ export default icons = {
   Send,
   USA,
   Visa,
+  Wifi,
+  WifiWhite,
 }

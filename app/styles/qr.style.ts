@@ -11,10 +11,14 @@ export const qrStyles = StyleSheet.create({
     borderRadius: 10, // Optional: Add rounded corners
     overflow: 'hidden', // Optional: Ensure camera view is contained within rounded corners
   },
+  cameraViewContainer: {
+    borderRadius: height * 0.025,
+  },
   camera: {
     flex: 1,
     width: width,
     height: height * 0.7, // Adjust height to your needs
+    borderRadius: height * 0.025,
   },
   container: {
     flex: 1,

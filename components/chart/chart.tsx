@@ -7,10 +7,10 @@ import { opacity } from 'react-native-reanimated/lib/typescript/reanimated2/Colo
 export default function LineChartExample() {
   // Dummy data for the chart
   const data = {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
     datasets: [
       {
-        data: [20, 37, 45, 26, 57, 40],
+        data: [20, 37, 45, 26, 43],
         strokeWidth: 2, // optional
       }
     ]
@@ -42,7 +42,7 @@ export default function LineChartExample() {
         }}
         bezier // For curved lines
         style={styles.chart}
-        withVerticalLabels={false}
+
         renderDotContent={({ x, y, index }) => (
           <Text
             key={index}

@@ -28,17 +28,19 @@ export default function StatsScreen() {
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
           >
-
             <Card2 item={parsedItem} />
             <View style={statsStyles.monthContainer}>
               {months.map((month, index) => (
                 <Pressable
+                  key={index}
                   onPress={() => setSelectedMonth(index)}
                 >
-                  <Text key={index} style={[statsStyles.monthText, {
+                  <Text style={[statsStyles.monthText, {
                     backgroundColor: selectedMonth === index ? ThemeColors.pBlue : ThemeColors.sWhite,
                     color: selectedMonth === index ? ThemeColors.pBlack : ThemeColors.pGray
-                  }]}>{month}</Text>
+                  }]}>
+                    {month}
+                  </Text>
                 </Pressable>
               ))}
             </View>

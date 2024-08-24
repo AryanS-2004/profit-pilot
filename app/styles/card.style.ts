@@ -9,11 +9,12 @@ export const cardStyles = StyleSheet.create({
   buttonContainer: {
     width: "100%",
     marginHorizontal: 'auto',
+    marginTop: 24,
     textAlign: 'center',
-    paddingVertical: 16,
-    borderRadius: 16,
+    paddingVertical: height * 0.02,
+    borderRadius: height * 0.02,
     backgroundColor: ThemeColors.pBlue,
-    elevation: 8,
+    elevation: height * 0.01,
     shadowColor: ThemeColors.pBlue,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
@@ -30,10 +31,10 @@ export const cardStyles = StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight,
     minHeight: Dimensions.get('window').height,
-    paddingTop: 40,
-    paddingBottom: 36,
-    paddingHorizontal: 24,
-    backgroundColor: '#fbfbfc'
+    paddingTop: height * 0.05,
+    paddingBottom: height * 0.04,
+    paddingHorizontal: height * 0.03,
+    backgroundColor: ThemeColors.bgGray
   },
   floatingWindow: {
     position: 'absolute',
@@ -46,7 +47,7 @@ export const cardStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingHorizontal: 4,
+    paddingHorizontal: height * 0.005,
     borderRadius: height * 0.02,
     marginHorizontal: width * 0.25,
     elevation: height * 0.01,
@@ -57,11 +58,17 @@ export const cardStyles = StyleSheet.create({
   },
   iconButton: {
     padding: 0,
-    width: 24,
+    width: height * 0.03,
   },
   listContainer: {
     width: '100%',
-    marginVertical: 8,
-    gap: 20,
+    marginTop: height * 0.025,
+    gap: height * 0.025,
+  },
+  title: {
+    fontFamily: ThemeFont.sb,
+    fontSize: ThemeText.m,
+    marginTop: height * 0.01,
+
   },
 })

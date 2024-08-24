@@ -3,7 +3,7 @@ import { ThemeFont } from "@/constants/Font";
 import { ThemeText } from "@/constants/Text";
 import { Dimensions, StatusBar, StyleSheet } from "react-native";
 
-// const { width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   accountContainer: {
@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 12,
+    marginTop: height * 0.02,
   },
   accountTitle1: {
     color: ThemeColors.sGray,
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     color: ThemeColors.pBlack,
     fontFamily: ThemeFont.sb,
     fontSize: ThemeText.n,
-    marginTop: 3,
+    marginTop: height * 0.005,
   },
   balance: {
     fontFamily: ThemeFont.sb,
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     color: ThemeColors.pBlack,
   },
   balanceContainer: {
-    marginTop: 8,
+    marginTop: height * 0.01,
   },
   balanceEyeContainer: {
     display: 'flex',
@@ -45,39 +45,39 @@ export const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
-    padding: 24,
-    borderRadius: 30,
+    padding: height * 0.03,
+    borderRadius: height * 0.0375,
     backgroundColor: ThemeColors.sWhite,
   },
   eyeContainer: {
-    borderRadius: 100,
-    padding: 6,
+    borderRadius: height,
+    padding: height * 0.0075,
     marginRight: '30%',
   },
   eyeIcon: {
-    width: 32,
-    height: 32,
+    width: height * 0.04,
+    height: height * 0.04,
   },
   topContainer: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 12,
+    marginBottom: height * 0.015,
   },
   usContainer: {
     display: 'flex',
     flexDirection: 'row',
-    gap: 6,
+    gap: height * 0.0075,
     alignItems: 'center',
-    padding: 6,
-    paddingRight: 12,
-    borderRadius: 100,
+    padding: height * 0.0075,
+    paddingRight: height * 0.015,
+    borderRadius: height,
     backgroundColor: ThemeColors.bgGray,
   },
   usaIcon: {
-    width: 32,
-    height: 32,
+    width: height * 0.04,
+    height: height * 0.04,
   },
   usaText: {
     fontFamily: ThemeFont.sb,
@@ -85,7 +85,7 @@ export const styles = StyleSheet.create({
     color: ThemeColors.pBlack,
   },
   visaIcon: {
-    width: 70,
-    height: 24,
+    width: height * 0.09,
+    height: height * 0.03,
   },
 })

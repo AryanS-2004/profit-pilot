@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, StatusBar, TouchableOpacity, Image, Dimensions,
 import icons from '../assets/assets'
 import ProfileCard from '@/components/profile-card/profile-card';
 import { cardStyles } from './styles/card.style';
-import Card2 from '@/components/card-card-2/card-card-2';
 import { userData } from '@/constants/UserData';
+import Card3 from '@/components/card-card-3/card-card-3';
 
 export default function CardScreen() {
   const router = useRouter();
@@ -18,10 +18,10 @@ export default function CardScreen() {
         >
           <ProfileCard />
           <View>
-            <Text>My Card</Text>
+            <Text style={cardStyles.title}>My Card</Text>
             <FlatList
               data={userData.cards}
-              renderItem={({ item }) => <Card2 item={item} />}
+              renderItem={({ item }) => <Card3 item={item} />}
               keyExtractor={(item) => item.id}
               contentContainerStyle={cardStyles.listContainer}
             />
@@ -33,7 +33,7 @@ export default function CardScreen() {
           </Pressable>
         </ScrollView>
 
-        <View style={cardStyles.floatingWindow}>
+        {/* <View style={cardStyles.floatingWindow}>
           <TouchableOpacity style={cardStyles.iconButton}
             onPress={() => router.navigate('/home')}
           >
@@ -50,7 +50,7 @@ export default function CardScreen() {
           >
             <Image source={icons.ScannerGray} style={cardStyles.iconButton} />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     </>
   );

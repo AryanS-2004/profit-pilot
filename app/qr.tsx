@@ -50,6 +50,7 @@ export default function QRScreen() {
       <ScrollView
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
+        style={qrStyles.cameraViewContainer}
       >
         <CameraView
           style={qrStyles.camera}
