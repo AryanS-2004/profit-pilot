@@ -78,6 +78,10 @@ export const statsStyles = StyleSheet.create({
     width: height * 0.03,
     height: height * 0.03,
   },
+  listContainer: {
+    width: '100%',
+    justifyContent: 'space-between'
+  },
   monthContainer: {
     display: 'flex',
     flexDirection: 'row',

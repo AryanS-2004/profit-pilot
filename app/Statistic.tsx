@@ -30,7 +30,25 @@ export default function StatsScreen() {
           >
             <Card2 item={parsedItem} />
             <View style={statsStyles.monthContainer}>
-              {months.map((month, index) => (
+              <FlatList
+                data={months}
+                renderItem={({ item, index }) => <Pressable
+                  key={index}
+                  onPress={() => setSelectedMonth(index)}
+                >
+                  <Text style={[statsStyles.monthText, {
+                    backgroundColor: selectedMonth === index ? ThemeColors.pBlue : ThemeColors.sWhite,
+                    color: selectedMonth === index ? ThemeColors.pBlack : ThemeColors.pGray
+                  }]}>
+                    {item}
+                  </Text>
+                </Pressable>}
+                keyExtractor={(item, index) => index.toString()}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={statsStyles.listContainer}
+              />
+              {/* {months.map((month, index) => (
                 <Pressable
                   key={index}
                   onPress={() => setSelectedMonth(index)}
@@ -42,7 +60,7 @@ export default function StatsScreen() {
                     {month}
                   </Text>
                 </Pressable>
-              ))}
+              ))} */}
             </View>
             <View style={statsStyles.chartSectionContainer}>
               <View style={statsStyles.chartSectionHeaderContainer}>

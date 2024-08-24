@@ -20,7 +20,7 @@ export default function LineChartExample() {
     <View style={styles.container}>
       <LineChart
         data={data}
-        width={Dimensions.get('window').width * 0.89} // Adjust the width to fit the screen
+        width={Dimensions.get('window').width} // Adjust the width to fit the screen
         height={200}
         chartConfig={{
           backgroundColor: ThemeColors.sWhite,
@@ -42,7 +42,8 @@ export default function LineChartExample() {
         }}
         bezier // For curved lines
         style={styles.chart}
-
+        withHorizontalLines={false}
+        withHorizontalLabels={false}
         renderDotContent={({ x, y, index }) => (
           <Text
             key={index}

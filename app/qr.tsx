@@ -27,6 +27,17 @@ export default function QRScreen() {
         <Pressable onPress={requestPermission}>
           <Text style={{ color: 'blue' }}>Allow Camera Access</Text>
         </Pressable>
+        <View style={qrStyles.floatingWindow}>
+          <TouchableOpacity style={qrStyles.iconButton} onPress={() => router.navigate('/home')}>
+            <Image source={icons.Home} style={qrStyles.iconButton} />
+          </TouchableOpacity>
+          <TouchableOpacity style={qrStyles.iconButton} onPress={() => router.navigate('/card')}>
+            <Image source={icons.CardGray} style={qrStyles.iconButton} />
+          </TouchableOpacity>
+          <TouchableOpacity style={qrStyles.iconButton} onPress={() => router.navigate('/qr')}>
+            <Image source={icons.ScannerGray} style={qrStyles.iconButton} />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
