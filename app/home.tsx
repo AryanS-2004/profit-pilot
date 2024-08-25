@@ -63,7 +63,6 @@ export default function HomeScreen() {
   }, []);
 
   const addTransaction = async () => {
-    console.log(amount);
     if (!amount || isNaN(Number(amount)) || destinationName.length === 0) {
       alert('Please enter a valid amount.');
       return;
@@ -78,16 +77,17 @@ export default function HomeScreen() {
       date: todayDate,
     };
 
-    console.log(newTransaction);
-
     const updatedCards = [...cards];
     updatedCards[selectedCard].transactions.push(newTransaction);
     updatedCards[selectedCard].balance -= Number(amount);
 
-    setCards(updatedCards);
+    const updatedUserData: UserType = {
+      ...userData!,
+      cards: updatedCards,
+    };
 
-    const updatedUserData = { ...userData, cards: updatedCards };
     updateUserData(updatedUserData);
+
     try {
       await setUserData(updatedUserData);
     } catch (err) {
@@ -99,6 +99,7 @@ export default function HomeScreen() {
     setDestinationName('');
     setAmount('');
   };
+
 
 
   const TransactionItem = ({ transaction }: { transaction: TransactionType }) => {
