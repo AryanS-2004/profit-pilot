@@ -2,11 +2,18 @@ import { Link, useRouter } from 'expo-router';
 import { StyleSheet, View, Text, StatusBar, Pressable, Image, ScrollView } from 'react-native';
 import { indexStyles } from './styles/index.style';
 import assets from '@/assets/assets';
+import { useEffect, useState } from 'react';
+import { checkFirstLaunch, getUserData } from './store-retrieve-data';
+
 
 
 export default function OnboardingScreen() {
 
   const router = useRouter();
+
+  useEffect(() => {
+    checkFirstLaunch();
+  }, []);
 
   return (
     <>

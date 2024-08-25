@@ -14,13 +14,90 @@ export const homeStyles = StyleSheet.create({
     marginVertical: height * 0.005,
     marginTop: height * 0.01,
   },
+  btmSheetHistoryContainer: {
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+  },
+  btmSheetHistoryTitle: {
+    fontFamily: ThemeFont.sb,
+    fontSize: ThemeText.m,
+    color: ThemeColors.pBlack,
+  },
+  btmSheetHistoryTitle2: {
+    fontFamily: ThemeFont.med,
+    fontSize: ThemeText.s,
+    color: ThemeColors.pGray,
+  },
+  btmSheetHistorytitleContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: height * 0.01,
+  },
+  btmSheetNewTxnContainer: {
+    paddingHorizontal: height * 0.02,
+  },
+  btmSheetNewTxnClose: {
+    fontFamily: ThemeFont.sb,
+    fontSize: ThemeText.ms,
+    color: ThemeColors.pGray,
+  },
+  btmSheetNewTxnTitle: {
+    fontFamily: ThemeFont.sb,
+    fontSize: ThemeText.m,
+    color: ThemeColors.pBlack,
+  },
+  btmSheetNewTxnInputBox: {
+    borderRadius: height * 0.025,
+    backgroundColor: ThemeColors.lGray,
+    padding: height * 0.01,
+    marginTop: height * 0.01,
+  },
+  btmSheetNewTxnInputLabel: {
+    marginTop: height * 0.01,
+    fontFamily: ThemeFont.sb,
+    fontSize: ThemeText.ms,
+    color: ThemeColors.pGray,
+  },
+  btmSheetNewTxnSendBtnContainer: {
+    padding: height * 0.01,
+    paddingVertical: height * 0.015,
+    marginTop: height * 0.02,
+    backgroundColor: ThemeColors.pBlack,
+    borderRadius: height * 0.015,
+    width: width * 0.5,
+    alignSelf: 'center'
+  },
+  btmSheetNewTxnSendBtnText: {
+    color: ThemeColors.bgWhite,
+    fontFamily: ThemeFont.med,
+    fontSize: ThemeText.ms,
+    alignSelf: 'center'
+  },
+  btmSheetNewTxnCardContainer: {
+    borderRadius: height,
+    backgroundColor: ThemeColors.sWhite,
+    marginTop: height * 0.01,
+  },
+  btmSheetNewTxnCardText: {
+    paddingVertical: height * 0.015,
+    paddingHorizontal: height * 0.04,
+    borderRadius: height,
+    fontFamily: ThemeFont.med,
+    fontSize: ThemeText.n
+  },
+  btmSheetNewTxnListContainer: {
+    width: '100%',
+    justifyContent: 'space-around',
+  },
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight,
     minHeight: Dimensions.get('window').height,
     paddingTop: height * 0.025,
     paddingHorizontal: width * 0.05,
-    backgroundColor: '#fbfbfc'
+    backgroundColor: ThemeColors.lGray
   },
   floatingWindow: {
     position: 'absolute',
@@ -76,7 +153,7 @@ export const homeStyles = StyleSheet.create({
     gap: height * 0.01,
     paddingHorizontal: height * 0.015,
     borderRadius: height,
-    backgroundColor: ThemeColors.White,
+    backgroundColor: ThemeColors.bgWhite,
   },
   requestIcon: {
     height: height * 0.025,
@@ -85,5 +162,46 @@ export const homeStyles = StyleSheet.create({
   requestText: {
     fontFamily: ThemeFont.sb,
     fontSize: ThemeText.n,
+  },
+  todayText: {
+    fontFamily: ThemeFont.sb,
+    fontSize: ThemeText.ms,
+    color: ThemeColors.pGray,
+    marginVertical: height * 0.01,
+  },
+  transactionItem: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    // alignItems: 'center',
+    marginVertical: height * 0.01,
+  },
+  transactionTitle: {
+    fontFamily: ThemeFont.sb,
+    fontSize: ThemeText.ms,
+    color: ThemeColors.pBlack
+  },
+  transactionTitleContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around'
+  },
+  transactionTime: {
+    fontFamily: ThemeFont.reg,
+    fontSize: ThemeText.ms,
+    color: ThemeColors.pGray
+  },
+  transactionAmount: {
+    fontFamily: ThemeFont.reg,
+    fontSize: ThemeText.n,
+  },
+  transactionLogo: {
+    width: height * 0.03,
+    height: height * 0.03,
+  },
+  transactionLogoContainer: {
+    padding: height * 0.015,
+    borderRadius: height,
+    backgroundColor: ThemeColors.lGray
   },
 })

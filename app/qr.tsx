@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { BarcodeScanningResult, CameraView, useCameraPermissions } from 'expo-camera';
 import icons from '../assets/assets';
 import { qrStyles } from './styles/qr.style';
+import FloatingWindow from '@/components/floating-window/floating-window';
 
 export default function QRScreen() {
   const router = useRouter();
@@ -73,18 +74,7 @@ export default function QRScreen() {
         />
       </ScrollView>
 
-      {/* Floating Window */}
-      <View style={qrStyles.floatingWindow}>
-        <TouchableOpacity style={qrStyles.iconButton} onPress={() => router.navigate('/home')}>
-          <Image source={icons.Home} style={qrStyles.iconButton} />
-        </TouchableOpacity>
-        <TouchableOpacity style={qrStyles.iconButton} onPress={() => router.navigate('/card')}>
-          <Image source={icons.CardGray} style={qrStyles.iconButton} />
-        </TouchableOpacity>
-        <TouchableOpacity style={qrStyles.iconButton} onPress={() => router.navigate('/qr')}>
-          <Image source={icons.ScannerGray} style={qrStyles.iconButton} />
-        </TouchableOpacity>
-      </View>
+      <FloatingWindow />
     </View>
   );
 }

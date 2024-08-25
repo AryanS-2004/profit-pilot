@@ -20,13 +20,13 @@ export default function LineChartExample() {
     <View style={styles.container}>
       <LineChart
         data={data}
-        width={Dimensions.get('window').width} // Adjust the width to fit the screen
+        width={Dimensions.get('window').width}
         height={200}
         chartConfig={{
           backgroundColor: ThemeColors.sWhite,
           backgroundGradientFrom: ThemeColors.sWhite,
           backgroundGradientTo: ThemeColors.sWhite,
-          decimalPlaces: 2, // Optional, defaults to 2dp
+          decimalPlaces: 2,
           color: (opacity = 1) => ThemeColors.pBlue,
           labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
           style: {
@@ -40,7 +40,7 @@ export default function LineChartExample() {
           },
           formatYLabel: () => ''
         }}
-        bezier // For curved lines
+        bezier
         style={styles.chart}
         withHorizontalLines={false}
         withHorizontalLabels={false}

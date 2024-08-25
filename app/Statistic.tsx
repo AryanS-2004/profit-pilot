@@ -5,9 +5,11 @@ import { userData } from '@/constants/UserData';
 import Card2 from '@/components/card-card-2/card-card-2';
 import { homeStyles } from './styles/home.style';
 import assets from '@/assets/assets';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ThemeColors } from '@/constants/Colors';
 import LineChartExample from '@/components/chart/chart';
+import { checkFirstLaunch, getUserData } from './store-retrieve-data';
+import FloatingWindow from '@/components/floating-window/floating-window';
 
 export default function StatsScreen() {
 
@@ -19,8 +21,25 @@ export default function StatsScreen() {
   const months = ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar"];
 
   const [selectedMonth, setSelectedMonth] = useState<number>(0);
+  const [userData, setUserData] = useState<UserType>();
+  const [cards, setCards] = useState<CardType[]>();
 
-  if (parsedItem) {
+  useEffect(() => {
+    checkFirstLaunch();
+  }, []);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await getUserData();
+      if (data) {
+        setUserData(data);
+        setCards(data.cards);
+      }
+    };
+    loadData();
+  }, []);
+
+  if (userData && cards && parsedItem) {
     return (
       <>
         <View style={statsStyles.container}>
@@ -48,19 +67,6 @@ export default function StatsScreen() {
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={statsStyles.listContainer}
               />
-              {/* {months.map((month, index) => (
-                <Pressable
-                  key={index}
-                  onPress={() => setSelectedMonth(index)}
-                >
-                  <Text style={[statsStyles.monthText, {
-                    backgroundColor: selectedMonth === index ? ThemeColors.pBlue : ThemeColors.sWhite,
-                    color: selectedMonth === index ? ThemeColors.pBlack : ThemeColors.pGray
-                  }]}>
-                    {month}
-                  </Text>
-                </Pressable>
-              ))} */}
             </View>
             <View style={statsStyles.chartSectionContainer}>
               <View style={statsStyles.chartSectionHeaderContainer}>
@@ -75,23 +81,7 @@ export default function StatsScreen() {
               <LineChartExample />
             </View>
           </ScrollView>
-          <View style={statsStyles.floatingWindow}>
-            <TouchableOpacity style={statsStyles.iconButton}
-              onPress={() => router.navigate('/home')}
-            >
-              <Image source={assets.Home} style={statsStyles.iconButton} />
-            </TouchableOpacity>
-            <TouchableOpacity style={statsStyles.iconButton}
-              onPress={() => router.navigate('/card')}
-            >
-              <Image source={assets.CardGray} style={statsStyles.iconButton} />
-            </TouchableOpacity>
-            <TouchableOpacity style={statsStyles.iconButton}
-              onPress={() => router.navigate('/qr')}
-            >
-              <Image source={assets.ScannerGray} style={statsStyles.iconButton} />
-            </TouchableOpacity>
-          </View>
+          <FloatingWindow />
         </View>
       </>
     );

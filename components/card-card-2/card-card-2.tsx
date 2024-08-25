@@ -8,7 +8,7 @@ import { ThemeColors } from '@/constants/Colors';
 import { useState } from 'react';
 
 
-export default function Card2({ item }: { item: any }) {
+export default function Card2({ item }: { item: CardType }) {
 
   const [showBalance, setShowBalance] = useState<boolean>(true);
 

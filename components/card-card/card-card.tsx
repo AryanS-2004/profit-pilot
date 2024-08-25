@@ -8,7 +8,7 @@ import { ThemeColors } from '@/constants/Colors';
 import { useState } from 'react';
 
 
-export default function Card({ item }: { item: any }) {
+export default function Card({ item }: { item: CardType }) {
 
   const [showBalance, setShowBalance] = useState<boolean>(true);
   const router = useRouter();
@@ -16,7 +16,7 @@ export default function Card({ item }: { item: any }) {
     <>
       <Pressable
         style={[styles.container, {
-          backgroundColor: item.id % 2 ? ThemeColors.pBlue : ThemeColors.pGreen
+          backgroundColor: parseInt(item.id) % 2 ? ThemeColors.pBlue : ThemeColors.pGreen
         }]}
 
         onPress={

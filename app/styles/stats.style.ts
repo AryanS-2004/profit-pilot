@@ -48,7 +48,7 @@ export const statsStyles = StyleSheet.create({
   container: {
     flex: 1,
     minHeight: Dimensions.get('window').height - height * 0.1,
-    paddingTop: height * 0.025,
+    paddingTop: height * 0.015,
     paddingBottom: height * 0.04,
     paddingHorizontal: height * 0.03,
     backgroundColor: ThemeColors.bgGray,
@@ -87,7 +87,7 @@ export const statsStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderRadius: height,
-    padding: height * 0.015,
+    padding: height * 0.01,
     backgroundColor: ThemeColors.sWhite,
     marginVertical: height * 0.015,
   },

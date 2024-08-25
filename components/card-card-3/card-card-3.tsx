@@ -8,7 +8,7 @@ import { ThemeColors } from '@/constants/Colors';
 import { useState } from 'react';
 
 
-export default function Card3({ item }: { item: any }) {
+export default function Card3({ item }: { item: CardType }) {
 
   const [showBalance, setShowBalance] = useState<boolean>(true);
   const router = useRouter();
@@ -28,24 +28,24 @@ export default function Card3({ item }: { item: any }) {
       >
         <View
           style={[styles.topContainer, {
-            backgroundColor: item.id % 2 ? ThemeColors.pGreen : ThemeColors.pBlack,
+            backgroundColor: parseInt(item.id) % 2 ? ThemeColors.pGreen : ThemeColors.pBlack,
           }]}
         >
           <View style={styles.wifiContainer}>
-            <Image source={item.id % 2 ? assets.Wifi : assets.WifiWhite} style={styles.wifiIcon} />
+            <Image source={parseInt(item.id) % 2 ? assets.Wifi : assets.WifiWhite} style={styles.wifiIcon} />
           </View>
           <View style={styles.numberContainer}>
             <Text style={[styles.number, {
-              color: item.id % 2 ? ThemeColors.pBlack : ThemeColors.sWhite
+              color: parseInt(item.id) % 2 ? ThemeColors.pBlack : ThemeColors.sWhite
             }]}>{item.number.slice(0, 4)}</Text>
             <Text style={[styles.number, {
-              color: item.id % 2 ? ThemeColors.pBlack : ThemeColors.sWhite
+              color: parseInt(item.id) % 2 ? ThemeColors.pBlack : ThemeColors.sWhite
             }]}>{item.number.slice(4, 8)}</Text>
             <Text style={[styles.number, {
-              color: item.id % 2 ? ThemeColors.pBlack : ThemeColors.sWhite
+              color: parseInt(item.id) % 2 ? ThemeColors.pBlack : ThemeColors.sWhite
             }]}>{item.number.slice(8, 12)}</Text>
             <Text style={[styles.number, {
-              color: item.id % 2 ? ThemeColors.pBlack : ThemeColors.sWhite
+              color: parseInt(item.id) % 2 ? ThemeColors.pBlack : ThemeColors.sWhite
             }]}>{item.number.slice(12, 16)}</Text>
           </View>
         </View>

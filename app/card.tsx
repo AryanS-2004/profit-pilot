@@ -3,55 +3,59 @@ import { StyleSheet, Text, View, StatusBar, TouchableOpacity, Image, Dimensions,
 import icons from '../assets/assets'
 import ProfileCard from '@/components/profile-card/profile-card';
 import { cardStyles } from './styles/card.style';
-import { userData } from '@/constants/UserData';
+// import { userData } from '@/constants/UserData';
 import Card3 from '@/components/card-card-3/card-card-3';
+import { useEffect, useState } from 'react';
+import { checkFirstLaunch, getUserData } from './store-retrieve-data';
+import FloatingWindow from '@/components/floating-window/floating-window';
 
 export default function CardScreen() {
   const router = useRouter();
+  const [userData, setUserData] = useState<UserType>();
+  const [cards, setCards] = useState<CardType[]>();
 
-  return (
-    <>
-      <View style={cardStyles.container}>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-        >
-          <ProfileCard />
-          <View>
-            <Text style={cardStyles.title}>My Card</Text>
-            <FlatList
-              data={userData.cards}
-              renderItem={({ item }) => <Card3 item={item} />}
-              keyExtractor={(item) => item.id}
-              contentContainerStyle={cardStyles.listContainer}
-            />
-          </View>
-          <Pressable
-            style={cardStyles.buttonContainer}
-          >
-            <Text style={cardStyles.buttonText}>Add New Card</Text>
-          </Pressable>
-        </ScrollView>
+  useEffect(() => {
+    checkFirstLaunch();
+  }, []);
 
-        {/* <View style={cardStyles.floatingWindow}>
-          <TouchableOpacity style={cardStyles.iconButton}
-            onPress={() => router.navigate('/home')}
-          >
-            <Image source={icons.Home} style={cardStyles.iconButton} />
-          </TouchableOpacity>
-          <TouchableOpacity style={cardStyles.iconButton}
-            onPress={() => router.navigate('/card')}
-          >
-            <Image source={icons.CardGray} style={cardStyles.iconButton} />
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await getUserData();
+      if (data) {
+        setUserData(data);
+        setCards(data.cards);
+      }
+    };
+    loadData();
+  }, []);
 
-          </TouchableOpacity>
-          <TouchableOpacity style={cardStyles.iconButton}
-            onPress={() => router.navigate('/qr')}
+  if (userData && cards) {
+    return (
+      <>
+        <View style={cardStyles.container}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
           >
-            <Image source={icons.ScannerGray} style={cardStyles.iconButton} />
-          </TouchableOpacity>
-        </View> */}
-      </View>
-    </>
-  );
+            <ProfileCard />
+            <View>
+              <Text style={cardStyles.title}>My Card</Text>
+              <FlatList
+                data={userData?.cards}
+                renderItem={({ item }) => <Card3 item={item} />}
+                keyExtractor={(item) => item.id}
+                contentContainerStyle={cardStyles.listContainer}
+              />
+            </View>
+            <Pressable
+              style={cardStyles.buttonContainer}
+            >
+              <Text style={cardStyles.buttonText}>Add New Card</Text>
+            </Pressable>
+          </ScrollView>
+          <FloatingWindow />
+        </View>
+      </>
+    );
+  }
 }
