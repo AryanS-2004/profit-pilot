@@ -1,9 +1,7 @@
-import { Link, useRouter, useLocalSearchParams } from 'expo-router';
-import { StyleSheet, View, Text, StatusBar, FlatList, TouchableOpacity, Image, Pressable, ScrollView } from 'react-native';
+import { useRouter, useLocalSearchParams } from 'expo-router';
+import { View, Text, FlatList, Image, Pressable, ScrollView } from 'react-native';
 import { statsStyles } from './styles/stats.style';
-import { userData } from '@/constants/UserData';
 import Card2 from '@/components/card-card-2/card-card-2';
-import { homeStyles } from './styles/home.style';
 import assets from '@/assets/assets';
 import { useEffect, useState } from 'react';
 import { ThemeColors } from '@/constants/Colors';
@@ -16,7 +14,6 @@ export default function StatsScreen() {
   const params = useLocalSearchParams();
   const { item } = params;
   const parsedItem = JSON.parse(item as string);
-  const router = useRouter();
 
   const months = ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar"];
 

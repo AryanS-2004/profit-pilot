@@ -1,15 +1,28 @@
+import { ThemeColors } from "@/constants/Colors";
+import { ThemeFont } from "@/constants/Font";
+import { ThemeText } from "@/constants/Text";
 import { Dimensions, StatusBar, StyleSheet } from "react-native";
 
 const { width, height } = Dimensions.get('window');
 
 export const qrStyles = StyleSheet.create({
+
+  allowCameraText: {
+    fontFamily: ThemeFont.sb,
+    fontSize: ThemeText.n,
+    color: ThemeColors.pGray,
+  },
+  allowCameraTextContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   cameraContainer: {
-    width: 200, // Adjust width to your preference
-    height: 200, // Adjust height to your preference
+    width: 200,
+    height: 200,
     alignSelf: 'center',
     marginBottom: 20,
-    borderRadius: 10, // Optional: Add rounded corners
-    overflow: 'hidden', // Optional: Ensure camera view is contained within rounded corners
+    borderRadius: 10,
+    overflow: 'hidden',
   },
   cameraViewContainer: {
     borderRadius: height * 0.025,
@@ -17,7 +30,7 @@ export const qrStyles = StyleSheet.create({
   camera: {
     flex: 1,
     width: width,
-    height: height * 0.7, // Adjust height to your needs
+    height: height * 0.7,
     borderRadius: height * 0.025,
   },
   container: {

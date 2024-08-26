@@ -7,8 +7,6 @@ export default function FloatingWindow() {
   const router = useRouter();
   const pathName = usePathname();
 
-  console.log(pathName);
-
   return (
     <>
       <View style={styles.floatingWindow}>

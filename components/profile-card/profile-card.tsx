@@ -1,6 +1,5 @@
-import { Link, useRouter } from 'expo-router';
-import { StyleSheet, View, Text, Image, StatusBar, TouchableOpacity, Dimensions } from 'react-native';
-import icons from '../../assets/assets'
+import { useRouter } from 'expo-router';
+import { View, Text, Image } from 'react-native';
 import { styles } from './profile-card.style';
 import { userData } from '@/constants/UserData';
 import assets from '../../assets/assets';
@@ -28,12 +27,3 @@ export default function ProfileCard() {
     </>
   );
 }
-
-
-
-
-// HOME  -> CARD CLICK ->  STATISTICS PAGE
-
-
-
-

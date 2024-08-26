@@ -7,7 +7,6 @@ export const checkFirstLaunch = async () => {
     const isInitialized = await AsyncStorage.getItem('@app_initialized');
 
     if (isInitialized === null) {
-      // This is the first launch, store the initial data
       await AsyncStorage.setItem('@user_data', JSON.stringify(userData));
       await AsyncStorage.setItem('@app_initialized', 'true');
       console.log('Initial data stored');

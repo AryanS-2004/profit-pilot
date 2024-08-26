@@ -1,26 +1,19 @@
-import { Link, useRouter } from 'expo-router';
-import { StyleSheet, View, Text, StatusBar, Image, TouchableOpacity, ScrollView, Dimensions, FlatList, Pressable } from 'react-native';
-import icons from '../assets/assets'
+import { useRouter } from 'expo-router';
+import { View, Text, Image, TouchableOpacity, ScrollView, Dimensions, FlatList, Pressable } from 'react-native';
 import { homeStyles } from './styles/home.style';
 import ProfileCard from '@/components/profile-card/profile-card';
 import Card from '@/components/card-card/card-card';
 import assets from '../assets/assets';
-import BottomSheet, { BottomSheetFlatList, BottomSheetTextInput, BottomSheetVirtualizedList } from '@gorhom/bottom-sheet'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import BottomSheet, { BottomSheetFlatList, BottomSheetTextInput } from '@gorhom/bottom-sheet'
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ThemeColors } from '@/constants/Colors';
 import { checkFirstLaunch, getUserData, updateUserData } from './store-retrieve-data';
 import FloatingWindow from '@/components/floating-window/floating-window';
 
-
-
-const { height, width } = Dimensions.get('window');
-
-
-
+const { height } = Dimensions.get('window');
 
 export default function HomeScreen() {
 
-  const router = useRouter();
   const snapPoints = useMemo(() => ['43%', '100%'], [])
   const snapPoints2 = useMemo(() => ['60%', '100%'], [])
   const [initialIndex, setInitialIndex] = useState(-1);
@@ -43,7 +36,7 @@ export default function HomeScreen() {
   const today = new Date();
 
   const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const month = String(today.getMonth() + 1).padStart(2, '0');
   const day = String(today.getDate()).padStart(2, '0');
   const todayDate = `${year}-${month}-${day}`
 
@@ -166,9 +159,12 @@ export default function HomeScreen() {
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
           >
+
             <View>
               <ProfileCard />
             </View>
+
+
             <View style={homeStyles.accountContainer}>
               <Text style={homeStyles.accountHeading}>Account</Text>
               <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -182,6 +178,7 @@ export default function HomeScreen() {
                 />
               </ScrollView>
             </View>
+
 
             <View style={homeStyles.reqSendContainer}>
               <View style={homeStyles.requestContainer}>
@@ -201,6 +198,9 @@ export default function HomeScreen() {
             </View>
           </ScrollView>
 
+          {/* -----------Bottom Sheet Transaction History---------- */}
+
+
           <BottomSheet
             snapPoints={snapPoints}
             ref={bottomSheetRef1}
@@ -214,6 +214,9 @@ export default function HomeScreen() {
               <TransactionList transactions={userData?.cards.flatMap(card => card.transactions)} />
             </View>
           </BottomSheet>
+
+
+          {/* -----------Bottom Sheet New Transaction---------- */}
 
           <BottomSheet
             snapPoints={snapPoints2}
@@ -261,8 +264,8 @@ export default function HomeScreen() {
             </View>
           </BottomSheet>
 
-        </View>
 
+        </View>
 
         <FloatingWindow />
       </>

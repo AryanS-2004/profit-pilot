@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button, Dimensions, TouchableOpacity, Image, StatusBar, ScrollView, ActivityIndicator, Alert, Vibration, Pressable } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, TouchableOpacity, Image, ScrollView, ActivityIndicator, Alert, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { BarcodeScanningResult, CameraView, useCameraPermissions } from 'expo-camera';
 import icons from '../assets/assets';
@@ -25,8 +25,8 @@ export default function QRScreen() {
   if (!permission.granted) {
     return (
       <View style={qrStyles.container}>
-        <Pressable onPress={requestPermission}>
-          <Text style={{ color: 'blue' }}>Allow Camera Access</Text>
+        <Pressable onPress={requestPermission} style={qrStyles.allowCameraTextContainer}>
+          <Text style={qrStyles.allowCameraText}>Allow Camera Access</Text>
         </Pressable>
         <View style={qrStyles.floatingWindow}>
           <TouchableOpacity style={qrStyles.iconButton} onPress={() => router.navigate('/home')}>

@@ -2,16 +2,14 @@ import { ThemeColors } from '@/constants/Colors';
 import React from 'react';
 import { View, Text, Dimensions, StyleSheet } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
-import { opacity } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 
 export default function LineChartExample() {
-  // Dummy data for the chart
   const data = {
     labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
     datasets: [
       {
         data: [20, 37, 45, 26, 43],
-        strokeWidth: 2, // optional
+        strokeWidth: 2,
       }
     ]
   };

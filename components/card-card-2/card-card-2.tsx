@@ -1,10 +1,7 @@
-import { Link, useRouter } from 'expo-router';
-import { StyleSheet, View, Text, Image, StatusBar, TouchableOpacity, Dimensions, Pressable } from 'react-native';
-import icons from '../../assets/assets'
+import { useRouter } from 'expo-router';
+import { View, Text, Image, Pressable } from 'react-native';
 import { styles } from './card-card-2.style';
-import { userData } from '@/constants/UserData';
 import assets from '../../assets/assets';
-import { ThemeColors } from '@/constants/Colors';
 import { useState } from 'react';
 
 
