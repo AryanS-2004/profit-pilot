@@ -1,22 +1,22 @@
-import { useRouter } from 'expo-router';
 import { View, Text, Image, TouchableOpacity, Dimensions, FlatList, Pressable } from 'react-native';
 import { homeStyles } from './styles/home.style';
 import ProfileCard from '@/components/profile-card/profile-card';
 import Card from '@/components/card-card/card-card';
 import assets from '../assets/assets';
-import BottomSheet, { BottomSheetFlatList, BottomSheetTextInput } from '@gorhom/bottom-sheet'
+import BottomSheet, { BottomSheetTextInput } from '@gorhom/bottom-sheet'
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ThemeColors } from '@/constants/Colors';
 import { checkFirstLaunch, getUserData, updateUserData } from './store-retrieve-data';
 import FloatingWindow from '@/components/floating-window/floating-window';
 import { ScrollView } from 'react-native-gesture-handler';
 
+
 const { height } = Dimensions.get('window');
 
 export default function HomeScreen() {
 
   const snapPoints = useMemo(() => ['43%', '100%'], [])
-  const snapPoints2 = useMemo(() => ['60%', '100%'], [])
+  const snapPoints2 = useMemo(() => ['43%', '100%'], [])
   const [initialIndex, setInitialIndex] = useState(-1);
 
   const bottomSheetRef1 = useRef<BottomSheet>(null)
@@ -56,6 +56,16 @@ export default function HomeScreen() {
     loadData();
   }, []);
 
+  const getCurrentTimeIn12HourFormat = () => {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const period = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+    const formattedHours = String(hours).padStart(2, '0');
+    return `${formattedHours}:${minutes} ${period}`;
+  };
+
   const addTransaction = async () => {
     if (!amount || isNaN(Number(amount)) || destinationName.length === 0) {
       alert('Please enter a valid amount.');
@@ -66,7 +76,7 @@ export default function HomeScreen() {
       id: new Date().getTime(),
       account: destinationName,
       amount: Number(amount),
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      time: getCurrentTimeIn12HourFormat(),
       sent: 1,
       date: todayDate,
     };
@@ -99,6 +109,7 @@ export default function HomeScreen() {
   const TransactionItem = ({ transaction }: { transaction: TransactionType }) => {
     const { account, amount, time, sent } = transaction;
     const amountStyle = { color: sent ? 'red' : 'green' };
+    // console.log(transaction);
     return (
       <View style={homeStyles.transactionItem}>
         <View style={{ display: 'flex', flexDirection: 'row', gap: height * 0.01 }}>
@@ -116,6 +127,7 @@ export default function HomeScreen() {
   };
 
   const convertTo24HourFormat = (time: string) => {
+
     const [timeString, modifier] = time.split(' ');
     let [hours, minutes] = timeString.split(':');
     if (hours === '12') {
@@ -128,13 +140,19 @@ export default function HomeScreen() {
   };
 
   const TransactionList = ({ transactions }: { transactions: TransactionType[] }) => {
-
+    // console.log(cards);
+    // console.log(transactions.filter((item) => item.date === todayDate).sort((a, b) => {
+    //   const timeA = convertTo24HourFormat(a.time);
+    //   const timeB = convertTo24HourFormat(b.time);
+    //   return timeB.localeCompare(timeA);
+    // }));
     return (
       <>
         <Text style={homeStyles.todayText}>Today</Text>
         <ScrollView
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
+        // style={homeStyles.transactionListContainer}
         >
           <FlatList
             data={transactions.filter((item) => item.date === todayDate).sort((a, b) => {
@@ -144,6 +162,8 @@ export default function HomeScreen() {
             })}
             renderItem={({ item }) => <TransactionItem transaction={item} />}
             keyExtractor={item => item.id.toString()}
+            extraData={transactions}
+            style={homeStyles.transactionListContainer}
           />
         </ScrollView>
       </>
@@ -224,44 +244,46 @@ export default function HomeScreen() {
             index={initialIndex}
             backgroundStyle={{ backgroundColor: ThemeColors.bgWhite, borderRadius: 16 }}
           >
-            <View style={homeStyles.btmSheetNewTxnContainer}>
-              <View style={homeStyles.btmSheetHistorytitleContainer}>
-                <Text style={homeStyles.btmSheetNewTxnTitle}>New Transaction</Text>
-                <Pressable
-                  onPress={() => { handleClosePress2(); handleOpenPress1() }}
-                >
-                  <Text style={homeStyles.btmSheetNewTxnClose}>Close</Text>
-                </Pressable>
-              </View>
-              <Text style={homeStyles.btmSheetNewTxnInputLabel}>Destination Name</Text>
-              <BottomSheetTextInput style={homeStyles.btmSheetNewTxnInputBox} value={destinationName} onChangeText={setDestinationName} />
-              <Text style={homeStyles.btmSheetNewTxnInputLabel}>Amount</Text>
-              <BottomSheetTextInput style={homeStyles.btmSheetNewTxnInputBox} value={amount} onChangeText={setAmount} keyboardType="numeric" />
-              <Text style={homeStyles.btmSheetNewTxnInputLabel}>Select Card</Text>
-              <View style={homeStyles.btmSheetNewTxnCardContainer}>
-                <FlatList
-                  data={cards}
-                  renderItem={({ item, index }) => <Pressable
-                    key={index}
-                    onPress={() => setSelectedCard(index)}
+            <ScrollView>
+              <View style={homeStyles.btmSheetNewTxnContainer}>
+                <View style={homeStyles.btmSheetHistorytitleContainer}>
+                  <Text style={homeStyles.btmSheetNewTxnTitle}>New Transaction</Text>
+                  <Pressable
+                    onPress={() => { handleClosePress2(); handleOpenPress1() }}
                   >
-                    <Text style={[homeStyles.btmSheetNewTxnCardText, {
-                      backgroundColor: selectedCard === index ? ThemeColors.pGreen : ThemeColors.sWhite,
-                      color: selectedCard === index ? ThemeColors.pBlack : ThemeColors.pGray
-                    }]}>
-                      **** {item.accountNumber.slice(-4)}
-                    </Text>
-                  </Pressable>}
-                  keyExtractor={(item, index) => index.toString()}
-                  horizontal={true}
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={homeStyles.btmSheetNewTxnListContainer}
-                />
+                    <Text style={homeStyles.btmSheetNewTxnClose}>Close</Text>
+                  </Pressable>
+                </View>
+                <Text style={homeStyles.btmSheetNewTxnInputLabel}>Destination Name</Text>
+                <BottomSheetTextInput style={homeStyles.btmSheetNewTxnInputBox} value={destinationName} onChangeText={setDestinationName} />
+                <Text style={homeStyles.btmSheetNewTxnInputLabel}>Amount</Text>
+                <BottomSheetTextInput style={homeStyles.btmSheetNewTxnInputBox} value={amount} onChangeText={setAmount} keyboardType="numeric" />
+                <Text style={homeStyles.btmSheetNewTxnInputLabel}>Select Card</Text>
+                <View style={homeStyles.btmSheetNewTxnCardContainer}>
+                  <FlatList
+                    data={cards}
+                    renderItem={({ item, index }) => <Pressable
+                      key={index}
+                      onPress={() => setSelectedCard(index)}
+                    >
+                      <Text style={[homeStyles.btmSheetNewTxnCardText, {
+                        backgroundColor: selectedCard === index ? ThemeColors.pGreen : ThemeColors.sWhite,
+                        color: selectedCard === index ? ThemeColors.pBlack : ThemeColors.pGray
+                      }]}>
+                        **** {item.accountNumber.slice(-4)}
+                      </Text>
+                    </Pressable>}
+                    keyExtractor={(item, index) => index.toString()}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={homeStyles.btmSheetNewTxnListContainer}
+                  />
+                </View>
+                <TouchableOpacity style={homeStyles.btmSheetNewTxnSendBtnContainer} onPress={addTransaction}>
+                  <Text style={homeStyles.btmSheetNewTxnSendBtnText}>Send</Text>
+                </TouchableOpacity>
               </View>
-              <TouchableOpacity style={homeStyles.btmSheetNewTxnSendBtnContainer} onPress={addTransaction}>
-                <Text style={homeStyles.btmSheetNewTxnSendBtnText}>Send</Text>
-              </TouchableOpacity>
-            </View>
+            </ScrollView>
           </BottomSheet>
 
 

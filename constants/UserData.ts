@@ -1,5 +1,47 @@
 import assets from "@/assets/assets";
 
+const generateTransactions = (startDate: Date) => {
+  const transactions = [];
+  for (let i = 0; i < 5; i++) {
+    const date = new Date(startDate);
+    date.setDate(date.getDate() - i);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+
+    for (let j = 0; j < 4; j++) {
+      transactions.push({
+        id: new Date().getTime() + Math.floor(Math.random() * 1000),
+        sent: j % 2 === 0 ? 1 : 0,
+        account: `Account ${j + 1}`,
+        amount: Math.floor(Math.random() * 500) + 1,
+        date: formattedDate,
+        time: `${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')} ${Math.random() > 0.5 ? 'AM' : 'PM'}`,
+      });
+    }
+  }
+  return transactions;
+};
+
+const generateMonthlyTransactions = (currentDate: Date) => {
+  const allTransactions = [];
+  for (let i = 1; i < 6; i++) {
+    const newDate = new Date(currentDate);
+    newDate.setMonth(currentDate.getMonth() - i);
+    allTransactions.push(...generateTransactions(newDate));
+  }
+  // console.log(allTransactions);
+  return allTransactions;
+};
+const today = new Date();
+
+const transactionsCard1 = [...generateTransactions(today), ...generateMonthlyTransactions(today)]
+const transactionsCard2 = [...generateTransactions(today), ...generateMonthlyTransactions(today)]
+
+// console.log([...transactionsCard1, ...transactionsCard2])
+
 export const userData = {
   name: "Sarah Muller",
   icon: assets.Profile,
@@ -12,48 +54,7 @@ export const userData = {
       number: '1253543235213090',
       accountNumber: '23805849934',
       balance: 40500.80,
-      transactions: [
-        {
-          id: 124124,
-          sent: 1,
-          account: 'Firmansayah A.',
-          amount: 20,
-          date: '2024-08-25',
-          time: '04:03 PM',
-        },
-        {
-          id: 124125,
-          sent: 0,
-          account: 'Adan S.',
-          amount: 1200,
-          date: '2024-08-25',
-          time: '02:30 PM',
-        },
-        {
-          id: 124126,
-          sent: 1,
-          account: 'Alice K.',
-          amount: 100,
-          date: '2024-08-24',
-          time: '08:25 PM',
-        },
-        {
-          id: 124127,
-          sent: 1,
-          account: 'John D.',
-          amount: 100,
-          date: '2024-08-24',
-          time: '06:08 PM',
-        },
-        {
-          id: 124128,
-          sent: 0,
-          account: 'Joe D.',
-          amount: 60,
-          date: '2024-08-23',
-          time: '09:05 AM',
-        },
-      ]
+      transactions: transactionsCard1
     },
     {
       id: '2',
@@ -63,48 +64,7 @@ export const userData = {
       number: '1253543235213090',
       accountNumber: '23875677732',
       balance: 40500.80,
-      transactions: [
-        {
-          id: 139124,
-          sent: 0,
-          account: 'Firmansayah A.',
-          date: '2024-08-25',
-          time: '03:26 PM',
-          amount: 20,
-        },
-        {
-          id: 139125,
-          sent: 1,
-          account: 'Adan S.',
-          amount: 1200,
-          date: '2024-08-25',
-          time: '01:53 PM',
-        },
-        {
-          id: 139126,
-          sent: 0,
-          account: 'Alice K.',
-          amount: 100,
-          date: '2024-08-24',
-          time: '06:47 PM',
-        },
-        {
-          id: 139127,
-          sent: 0,
-          account: 'John D.',
-          amount: 100,
-          date: '2024-08-24',
-          time: '03:33 PM',
-        },
-        {
-          id: 139128,
-          sent: 1,
-          account: 'Joe D.',
-          amount: 60,
-          date: '2024-08-24',
-          time: '11:35 AM',
-        },
-      ]
+      transactions: transactionsCard2
     }
   ]
 }

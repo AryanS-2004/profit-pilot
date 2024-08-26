@@ -30,7 +30,7 @@ export const getUserData = async () => {
 
 export const updateUserData = async (newData: UserType) => {
   try {
-    console.log(newData);
+    // console.log(newData);
     await AsyncStorage.setItem('@user_data', JSON.stringify(newData));
   } catch (e) {
     console.error('Error updating user data:', e);

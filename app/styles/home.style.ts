@@ -204,4 +204,7 @@ export const homeStyles = StyleSheet.create({
     borderRadius: height,
     backgroundColor: ThemeColors.lGray
   },
+  transactionListContainer: {
+    paddingBottom: height * 0.09
+  }
 })

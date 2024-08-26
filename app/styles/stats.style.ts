@@ -16,10 +16,10 @@ export const statsStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    gap: height * 0.005,
+    // gap: height * 0.005,
     backgroundColor: ThemeColors.bgGray,
-    paddingVertical: height * 0.01,
-    paddingHorizontal: height * 0.015,
+    // paddingVertical: height * 0.01,
+    // paddingHorizontal: height * 0.015,
     borderRadius: height,
   },
 
@@ -95,5 +95,10 @@ export const statsStyles = StyleSheet.create({
     padding: height * 0.015,
     borderRadius: height,
     fontFamily: ThemeFont.med
-  }
+  },
+  pickerStyle: {
+    width: height * 0.175,
+    color: ThemeColors.pBlack,
+    borderRadius: height * 0.01,
+  },
 })

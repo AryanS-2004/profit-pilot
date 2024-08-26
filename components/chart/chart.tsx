@@ -1,18 +1,37 @@
 import { ThemeColors } from '@/constants/Colors';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, Text, Dimensions, StyleSheet } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 
-export default function LineChartExample() {
-  const data = {
-    labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
-    datasets: [
-      {
-        data: [20, 37, 45, 26, 43],
-        strokeWidth: 2,
-      }
-    ]
-  };
+export default function LineChartExample({ month, earning, card }: { month: number, earning: number, card: CardType }) {
+  const data = useMemo(() => {
+    // console.log(card)
+    const filteredTransactions = card.transactions.filter(transaction => {
+      const transactionMonth = new Date(transaction.date).getMonth() + 1;
+      return transactionMonth === month && transaction.sent === (earning === 1 ? 0 : 1);
+    }
+    );
+
+    // console.log(filteredTransactions);
+
+    const uniqueDates = [...new Set(filteredTransactions.map(transaction => transaction.date))].sort((a, b) => new Date(b).getTime() - new Date(a).getTime()).slice(0, 5);
+
+    // console.log(uniqueDates);
+    const totals = uniqueDates.map(date => {
+      return filteredTransactions
+        .filter(transaction => transaction.date === date)
+        .reduce((sum, transaction) => sum + transaction.amount, 0);
+    });
+
+    const dayLabels = uniqueDates.map(date => (new Date(date).getDate()).toString());
+
+    // console.log(dayLabels);
+
+    return {
+      labels: dayLabels.reverse(),
+      datasets: [{ data: totals.reverse(), strokeWidth: 2 }],
+    };
+  }, [month, earning]);
 
   return (
     <View style={styles.container}>
@@ -36,7 +55,7 @@ export default function LineChartExample() {
             strokeWidth: "2",
             stroke: ThemeColors.White,
           },
-          formatYLabel: () => ''
+          formatYLabel: () => '',
         }}
         bezier
         style={styles.chart}
