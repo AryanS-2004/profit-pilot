@@ -15,8 +15,8 @@ export const homeStyles = StyleSheet.create({
     marginTop: height * 0.01,
   },
   btmSheetHistoryContainer: {
-    paddingVertical: 12,
-    paddingHorizontal: 20,
+    paddingVertical: height * 0.015,
+    paddingHorizontal: height * 0.025,
   },
   btmSheetHistoryTitle: {
     fontFamily: ThemeFont.sb,
@@ -125,7 +125,7 @@ export const homeStyles = StyleSheet.create({
   },
   listContainer: {
     width: '100%',
-    marginVertical: 8,
+    marginVertical: height * 0.01,
     gap: height * 0.025,
   },
   plusContainer: {

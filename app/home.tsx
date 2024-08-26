@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { View, Text, Image, TouchableOpacity, ScrollView, Dimensions, FlatList, Pressable } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Dimensions, FlatList, Pressable } from 'react-native';
 import { homeStyles } from './styles/home.style';
 import ProfileCard from '@/components/profile-card/profile-card';
 import Card from '@/components/card-card/card-card';
@@ -9,6 +9,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { ThemeColors } from '@/constants/Colors';
 import { checkFirstLaunch, getUserData, updateUserData } from './store-retrieve-data';
 import FloatingWindow from '@/components/floating-window/floating-window';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const { height } = Dimensions.get('window');
 
@@ -128,8 +129,6 @@ export default function HomeScreen() {
 
   const TransactionList = ({ transactions }: { transactions: TransactionType[] }) => {
 
-
-    // console.log(transactions);
     return (
       <>
         <Text style={homeStyles.todayText}>Today</Text>
@@ -137,7 +136,7 @@ export default function HomeScreen() {
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
         >
-          <BottomSheetFlatList
+          <FlatList
             data={transactions.filter((item) => item.date === todayDate).sort((a, b) => {
               const timeA = convertTo24HourFormat(a.time);
               const timeB = convertTo24HourFormat(b.time);
@@ -211,6 +210,7 @@ export default function HomeScreen() {
                 <Text style={homeStyles.btmSheetHistoryTitle}>Transaction</Text>
                 <Text style={homeStyles.btmSheetHistoryTitle2}>View all</Text>
               </View>
+
               <TransactionList transactions={userData?.cards.flatMap(card => card.transactions)} />
             </View>
           </BottomSheet>
